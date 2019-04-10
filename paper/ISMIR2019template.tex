@@ -21,11 +21,12 @@
 % \usepackage[bookmarks=false,hidelinks]{hyperref}
 % Mind the bookmarks=false option; bookmarks are incompatible with ismir.sty.
 
+\newcommand{\setNameUpper}{FOURIER}
 \newcommand{\setName}{Fourier}
 
 % Title.
 % ------
-\title{The \setName~Set: Beats, Downbeats, and Functional Segment Annotations of Western Popular Music}
+\title{The \setNameUpper~Set: Beats, Downbeats, and Functional Segment Annotations of Western Popular Music}
 
 % Note: Please do NOT use \thanks or a \footnote in any of the author markup
 
@@ -87,14 +88,14 @@
 %
 \section{Introduction}\label{sec:introduction}
 
-The tasks of beat detection, downbeat prediction, and structural segmentation constitute a fundamental part of the field of MIR.
+The tasks of beat detection, downbeat prediction, and structural segmentation~\cite{Paulus2010} constitute a fundamental part of the field of MIR.
 These three musical characteristics are often related: downbeats define the first beat of a given music measure, and long structural music segments tend to begin and end on specific beat locations --frequently on downbeats.
 The automatic estimation of such information could result in better musical systems such as more accurate automatic DJ-ing, better intra- and inter-song navigation, further musicological insights of large collections, \emph{etc}.
 While several approaches exploiting more than one of these musical traits have been proposed~\cite{Bock2016, Fuentes2019}, the lack of human annotated data containing the three of them for a single collection are scarce.
 This limits the amount of potential of certain methods, especially those that require large amounts of information (e.g., deep learning~\cite{Humphrey2012}).
 
 In this paper we present the \setName~set: human annotations of beats, downbeats, and functional segmentation for over 700 tracks of western popular music.
-These annotations were gathered with the aim of having a significant amount of data to train models to improve the prediction of such musical attributes, which would later be applied to various products offered by \setName.
+These annotations were gathered with the aim of having a significant amount of data to train models to improve the prediction of such musical attributes, which would later be applied to various products offered by the company \setName.
 By releasing this set to the public, it is our aim to let the research community explore and exploit these annotations to advance the tasks of beat tracking, downbeat prediction, and automatic functional structural segmentation.
 We discuss the methodology to acquire these data, including the song selection process, and the inclusion of standard identifiers (Acoustid and MusicBrainz) and onsets for the first 30 seconds of the tracks to allow for other researchers to more easily access and align, when needed, the actual audio content.
 Furthermore, we present a series of results with standard algorithmic approaches in the literature with the goal of having an initial public benchmark of this set.
@@ -103,13 +104,36 @@ The rest of this work is organized as follows: Section~\ref{sec:background} cont
 %
 \section{Background}\label{sec:background}
 
-In this section we discuss previously published datasets, and break them down based on the type of information they provide.
+In this section we discuss previously published datasets and the tasks they aim to solve.
 
 \input{beat_downbeat.tex}
 
-Segmentation datasets: SALAMI~\cite{Smith2011}, Real World Computing Popular Music Database (RWC)~\cite{Goto2002}, Mazurka\footnote{\texttt{http://mazurka.org.uk}}~\cite{4959972}..
+\subsection{Structural Segmentation Sets}
 
-Combined datasets: The Beatles Dataset~\cite{Mauch2009a}.
+The task of structural segmentation has been particularly active in the MIR community since the late 2000s.
+Similarly to the beat tracking task, several datasets have been published, and some of them have evolved over time.
+One of the major challenges with structural segmentation is that this task is regarded as both ambiguous (i.e., there may be more than one valid annotation for a given track~\cite{McFee2017}) and subjective (i.e., two different listeners might perceive different sets of segment boundaries~\cite{Bruderer2009}).
+This has led to different methodologies when annotating and gathering structural datasets, thus having a diverse ecosystem of sets to choose from when evaluating automatic approaches.
+
+The first time this task appeared on MIREX was in 2009,\footnote{https://www.music-ir.org/mirex/wiki/2009:Structural\_Segmentation} where annotations from The Beatles dataset (included in the set described above) and a subset of the Real World Computing Popular Music Database (RWC)~\cite{Goto2002} were employed.
+These sets contain several functional segment annotations for western (The Beatles) and Japanese (RWC) popular music.
+These segment functions describe the \emph{purpose} of the segments, e.g.: ``solo'', ``verse'', ``chorus.''
+A single annotation per track is provided for these two sets.
+The Beatles dataset was further revised at the Tampere University of Technology,\footnote{http://www.cs.tut.fi/sgn/arg/paulus/beatles\_sections\_TUT.zip} and additional functional segment annotations for other other bands were added to The Beatles set, which became known as the Isophonics Dataset~\cite{Mauch2009a}.
+No beat or downbeat annotations were provided to the rest of the tracks in Isophonics, and the final number of tracks with functional structural segment annotations is 300.
+The number of annotated tracks in the RWC is 365.
+
+To address the open problems of ambiguity and subjectivity, further annotations per track from several experts could be gathered.
+That is the case with The Structural Annotations for Large Amounts of Music Information (SALAMI) dataset, where most of its N tracks have been annotated by at least 2 humans.
+
+Since these challenges remain open problems, and structural segmentation remains 
+
+, when it first appeared in MIREX.
+TUT Beatles (corrections)
+
+Segmentation datasets: SALAMI~\cite{Smith2011}, Real World Computing Popular Music Database (RWC)~\cite{Goto2002}, Mazurka\footnote{http://mazurka.org.uk}~\cite{4959972}, SPAM~\cite{Nieto2016}
+
+Combined datasets: The Beatles Dataset.
 
 \section{The \setName~Set}\label{sec:dataset}
 
