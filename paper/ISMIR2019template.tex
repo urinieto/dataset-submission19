@@ -91,7 +91,7 @@
 The tasks of beat detection, downbeat prediction, and structural segmentation~\cite{Paulus2010} constitute a fundamental part of the field of MIR.
 These three musical characteristics are often related: downbeats define the first beat of a given music measure, and long structural music segments tend to begin and end on specific beat locations --frequently on downbeats.
 The automatic estimation of such information could result in better musical systems such as more accurate automatic DJ-ing, better intra- and inter-song navigation, further musicological insights of large collections, \emph{etc}.
-While several approaches exploiting more than one of these musical traits have been proposed~\cite{Bock2016, Fuentes2019}, the lack of human annotated data containing the three of them for a single collection are scarce.
+While several approaches exploiting more than one of these musical traits have been proposed~\cite{Bock2016, Mccallum2019, Fuentes2019}, the lack of human annotated data containing the three of them for a single collection are scarce.
 This limits the amount of potential of certain methods, especially those that require large amounts of information (e.g., deep learning~\cite{Humphrey2012}).
 
 In this paper we present the \setName~set: human annotations of beats, downbeats, and functional segmentation for over 700 tracks of western popular music.
@@ -135,9 +135,10 @@ The following properties typically define segmentation datasets:
 \textbf{Hierarchy}: The levels of annotations contained in the set. It typically contains functional, large, and/or small segment annotations.
 
 
-\section{The \setName~Set}\label{sec:dataset}
+\section{The \setNameUpper~Set}\label{sec:dataset}
 
-Explanation of dataset.\footnote{URL not displayed for the blind review process.}
+In this section we present the \setName~set, including the methodology of acquiring the data, its motivation, its contents, and a set of statistics of its annotations.
+The set is publicly available on-line.\footnote{URL not displayed for the blind review process.}
 
 \subsection{Data Gathering}
 
@@ -151,15 +152,24 @@ Why were the songs selected (motivation behind \setName).
 
 Additional data could be obtained by data augmentation~\cite{Mcfee2015}.
 
-\subsection{Data Formatting}
+\subsection{Dataset Contents}
 
-JAMS~\cite{Humphrey2014}.
+The annotations and some of the song-level metadata are distributed via 715 JAMS~\cite{Humphrey2014} files, one per track.
+This format is chosen given its simplicity when storing multi-task annotations plus song- and corpus-level metadata.
+Each JAMS file contains the beat, downbeat, and functional segmentation annotations, plus a set of estimated onsets for the first 30 seconds of the audio.
+These onsets should help aligning the audio in case researchers obtain audio data with different compression formats that might include certain small time offsets in the time signal.
+This onset information was computed using \texttt{librosa}~\cite{Mcfee2015a} version TODO, with their default parameters.
 
-MusicBrainz IDs.
+Furthermore, we provide other identifiers with the aim of easily retrieving additional metadata and/or audio content for each song.
+These identifiers include:
 
-Acoustid IDs.
+\begin{itemize}
+    \item \textbf{MusicBrainz}\footnote{https://musicbrainz.org/}: open music encyclopedia including unique identifiers for recordings, releases, artists, etc. 
+    \item \textbf{AcoustID}\footnote{https://acoustid.org/}: open source fingerprinting service to easily match audio content, typically associated with MusicBrainz identifiers.
+\end{itemize}
 
-Train/Test splits.
+Finally, we provide a single csv file including additional metadata information such as genre and proposed train/test splits.
+These splits are defined by retaining the genre distribution both in the training and test sets, with a 80\% and 20\% distributions of the tracks, respectively.
 
 \subsection{Data Statistics}
 
@@ -185,7 +195,8 @@ Downbeat results
 
 \subsection{Segmentation Results}
 
-Segmentation results. Using~\cite{Nieto2016}. Serr\`a algorithm~\cite{Serra2014}. Results included in CVS format for all dataset.
+Segmentation results. Using~\cite{Nieto2016}. Serr\`a algorithm~\cite{Serra2014}. Nieto algorithm~\cite{Nieto2014}. Results included in CVS format for all dataset.
+
 
 \begin{figure}
     \centerline{\includegraphics[width=\columnwidth]{figs/segment_results.pdf}}
