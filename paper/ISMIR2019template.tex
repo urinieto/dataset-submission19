@@ -124,16 +124,16 @@ No beat or downbeat annotations were provided to the rest of the tracks in Isoph
 The number of annotated tracks in the RWC is 365.
 
 To address the open problems of ambiguity and subjectivity, further annotations per track from several experts could be gathered.
-That is the case with The Structural Annotations for Large Amounts of Music Information (SALAMI) dataset, where most of its N tracks have been annotated by at least 2 humans.
+That is the case with The Structural Annotations for Large Amounts of Music Information (SALAMI) dataset~\cite{Smith2011}, where most of its nearly 1,400 tracks have been annotated by at least 2 humans.
+Similarly, the Structural Poly Annotations of Music (SPAM) dataset~\cite{Nieto2016} provides 5 different annotations for 50 tracks.
+These two sets not only contain functional levels of annotations, but also large and small scale segments where only single letters describing the similarity between segments are annotated.
+Thus, these can be seen as sets that contain \emph{hierarchical} data, which remains largely unexploited in the MIREX competition.
+As opposed to Isophonics and RWC, these two sets contain highly diverse music in terms of genre: from world-music to rock, including jazz, blues, and even live music.
 
-Since these challenges remain open problems, and structural segmentation remains 
+The following properties typically define segmentation datasets:
+\textbf{Number of annotators}: This can help when trying to quantify the amount of disagreement among annotators~\cite{McFee2017,Nieto2016}, or when developing approaches that may yield more than one potentially valid segmentation.
+\textbf{Hierarchy}: The levels of annotations contained in the set. It typically contains functional, large, and/or small segment annotations.
 
-, when it first appeared in MIREX.
-TUT Beatles (corrections)
-
-Segmentation datasets: SALAMI~\cite{Smith2011}, Real World Computing Popular Music Database (RWC)~\cite{Goto2002}, Mazurka\footnote{http://mazurka.org.uk}~\cite{4959972}, SPAM~\cite{Nieto2016}
-
-Combined datasets: The Beatles Dataset.
 
 \section{The \setName~Set}\label{sec:dataset}
 
