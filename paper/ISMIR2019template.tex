@@ -112,6 +112,8 @@ In this section we discuss previously published datasets and the tasks they aim 
 
 The task of structural segmentation has been particularly active in the MIR community since the late 2000s.
 Similarly to the beat tracking task, several datasets have been published, and some of them have evolved over time.
+This task is often divided into two subtasks: segment boundary retrieval and segment labeling.
+All well-known published datasets contain both boundary and label information.
 One of the major challenges with structural segmentation is that this task is regarded as both ambiguous (i.e., there may be more than one valid annotation for a given track~\cite{McFee2017}) and subjective (i.e., two different listeners might perceive different sets of segment boundaries~\cite{Bruderer2009}).
 This has led to different methodologies when annotating and gathering structural datasets, thus having a diverse ecosystem of sets to choose from when evaluating automatic approaches.
 
@@ -128,11 +130,12 @@ That is the case with The Structural Annotations for Large Amounts of Music Info
 Similarly, the Structural Poly Annotations of Music (SPAM) dataset~\cite{Nieto2016} provides 5 different annotations for 50 tracks.
 These two sets not only contain functional levels of annotations, but also large and small scale segments where only single letters describing the similarity between segments are annotated.
 Thus, these can be seen as sets that contain \emph{hierarchical} data, which remains largely unexploited in the MIREX competition.
-As opposed to Isophonics and RWC, these two sets contain highly diverse music in terms of genre: from world-music to rock, including jazz, blues, and even live music.
+As opposed to Isophonics and RWC, these two sets contain highly diverse music in terms of genre: from world-music to rock, including jazz, blues, and live music.
 
 The following properties typically define segmentation datasets:
 \textbf{Number of annotators}: This can help when trying to quantify the amount of disagreement among annotators~\cite{McFee2017,Nieto2016}, or when developing approaches that may yield more than one potentially valid segmentation.
 \textbf{Hierarchy}: The levels of annotations contained in the set. It typically contains functional, large, and/or small segment annotations.
+When only when level of annotations is provided, these are typically called \emph{flat} segment annotations.
 
 
 \section{The \setNameUpper~Set}\label{sec:dataset}
@@ -154,11 +157,15 @@ Additional data could be obtained by data augmentation~\cite{Mcfee2015}.
 
 \subsection{Dataset Contents}
 
-The annotations and some of the song-level metadata are distributed via 715 JAMS~\cite{Humphrey2014} files, one per track.
+The \setName~set contains manual annotations for 715 western popular music tracks, thus being the largest to date published dataset containing beats, downbeats, and functional structural segmentation information.
+The annotations and some of the song-level metadata are distributed via JAMS~\cite{Humphrey2014} files, one per track.
 This format is chosen given its simplicity when storing multi-task annotations plus song- and corpus-level metadata.
 Each JAMS file contains the beat, downbeat, and functional segmentation annotations, plus a set of estimated onsets for the first 30 seconds of the audio.
 These onsets should help aligning the audio in case researchers obtain audio data with different compression formats that might include certain small time offsets in the time signal.
 This onset information was computed using \texttt{librosa}~\cite{Mcfee2015a} version TODO, with their default parameters.
+
+For the sake of transparency and usability, we also publish the raw beats, downbeats, and segmentation data as space-separated text files, two per track: one for beats and downbeats, and the other for segments.
+We also distribute the code that converts these raw annotations into unified JAMS file.
 
 Furthermore, we provide other identifiers with the aim of easily retrieving additional metadata and/or audio content for each song.
 These identifiers include:
@@ -210,7 +217,9 @@ Beat + Segmentation.
 
 \section{Conclusions}\label{sec:conclusions}
 
-Potential of combined data + large amounts of annotations.
+We presented the \setName~set, the largest dataset in terms of human annotations containing the following three types of information: beats, downbeats, and function structural segments.
+
+TODO: Potential of combined data + large amounts of annotations.
 
 % For bibtex users:
 \bibliography{ISMIRtemplate,beat_data_refs}
