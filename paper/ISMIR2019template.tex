@@ -145,19 +145,21 @@ The set is publicly available on-line.\footnote{URL not displayed for the blind 
 
 \subsection{Data Gathering}
 
-How were the songs selected. Show genre distribution plot.
+The primary motivation of this work is based on the need to create gameplay data for rhythm-action games (also known as beat matching games). Many such games exist, from early pioneers like Parappa The Rapper and Beatmania, to the rock simulation games Guitar Hero and Rock Band, as well as community-based games like OSU and more recently, VR games like Beat Saber. In most cases the gameplay data (also referred to as beatmaps), consisting of note locations in a song, is hand-authored. In certain games, additional control data may be desirable. For example, in the rock simulation games, where a 3D depiction of a rock concert is rendered, it can be desirable to simulate flashing lights (on the beat) or lighting color palette changes (on section boundaries). Again, this data tends to be hand-authored.
 
-Who annotated them (e.g., professional musicians?)
+Our desire was to implement a suite of automatic music analysis tools that estimate certain musical attributes in order to expedite the process of hand-authoring gameplay data, or in some cases, to fully automate the process of creating this data. The songs of the \setName~set were gathered and hand-annotated to create a ground-truth dataset for training and testing these algorithms.
 
-How they annotated them (tools, revisions, etc.). Why only flat segmentation.
+The mix of genres in this corpus were chosen to be typical of ones used in the rhythm-action genre, with a somewhat higher tendency towards EDM and popular songs suitable for dancing. As such, most tend to have a very stable tempo and a 4/4 time signature. However, we also added a selection of songs that may not be typical of dance or pop music to increase variety. Some of these (Classic Rock, Country, Metal) may have less stable tempo (where drums are played by humans as opposed to drum-machines or DAW-based productions) and may deviate from a strict 4/4 meter. 
 
-Why were the songs selected (motivation behind \setName).
+[show genre distribution plot here]
+
+All songs were annotated by trained professional musicians who regularly work in music production environments. As the project went on, the majority of annotation work fell to only a few individuals who became specialized in this task. Annotations were created in Digital Audio Workstation software (such as Reaper or Logic). First, a MIDI tempo track was established that corresponded to the song audio. Then beats, downbeats, and sections were coded into the MIDI track using note events and text events. MIDI files were then exported and automatically converted to a text-based representation of beats, downbeats, and named section boundaries. Every song was verified once by the original annotator.
 
 Additional data could be obtained by data augmentation~\cite{Mcfee2015}.
 
 \subsection{Dataset Contents}
 
-The \setName~set contains manual annotations for 715 western popular music tracks, thus being the largest published to date dataset containing beats, downbeats, and function structural segmentation information.
+The \setName~set contains manual annotations for 715 western popular music tracks, thus being the largest published  dataset to date containing beats, downbeats, and function structural segmentation information.
 The annotations and some of the song-level metadata are distributed via JAMS~\cite{Humphrey2014} files, one per track.
 This format is chosen given its simplicity when storing multi-task annotations plus song- and corpus-level metadata.
 Each JAMS file contains the beat, downbeat, and functional segmentation annotations, plus a set of estimated onsets for the first 30 seconds of the audio.
