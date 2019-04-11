@@ -242,7 +242,23 @@ How many segments start/end on downbeats?
 
 \subsection{Beat Results}
 
-Beat results
+In order to establish performance baselines over the dataset for the task of beat-tracking. We have evaluated a number of openly available beat
+tracking algorithms on the dataset \cite{Ellis2007, Krebs2015, Korzeniowski2014, Bock2011}. This allows a comparison between datasets for which these algorithms have been previously evaluated,
+with respect to their affect on these algorithm's performance. The results are also provided with the dataset in CSV format. This is intendended
+as a convenience for any future work that wishes to evaluate novel algorithms against these benchmarks.
+
+The beat tracking results for the aforementioned algorithms are displayed in Figure~\ref{fig:FIGURE}. There they are evaluated across two metrics,
+F-Measure, and Max~F-Measure, where the latter refers to the maximum F-Measure obtained per track when evaluated across double and half-time metrical variations
+in the annotated beats provided with this dataset. For half-time metrical variations, both the downbeat and offbeat alignments were tested for a maximum F-Measure
+value. While \cite{Ellis2007} is the most computationally efficient of the algorithms, we see clear gains in the later methods developed. It can be seen that with 
+this dataset, both \cite{Ellis2007} and the ``BeatDetector'' algorithm from \cite{Bock2011} when using  and REF have a significant number of double-half time errors, compared to REFS.
+Unlike the ``BeatTracker'' algorithm in \cite{Bock2011}, the ``BeatDetector'' algorithm assumes constant tempo.
+
+\begin{figure}
+    \centerline{\includegraphics[width=\columnwidth]{figs/2019_04_09_19_15_00_Beat_TrackiMax_F-Measure.pdf}}
+    \caption{Beat tracking performance over the \setName~set, for the algorithms Ellis \cite{Ellis2007}, Krebs \cite{Krebs2015}, Korzeniowski \cite{Korzeniowski2014}, B{\"o}ck 1 - the ``BeatDetector'' technique from \cite{Bock2011}, and B{\"o}ck 1 - the ``BeatTracker'' technique from \cite{Bock2011}.}
+    \label{fig:downbeat_segment}
+\end{figure}
 
 \subsection{Downbeat Results}
 
