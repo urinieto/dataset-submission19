@@ -180,19 +180,33 @@ These splits are defined by retaining the genre distribution both in the trainin
 
 \subsection{Data Statistics}
 
-Show plots and statistics for: 
+In this subsection we provide several data insights obtained from the annotations to give an objective overview of the set.
+In Figure~\ref{fig:BPM_dist} we show the estimated tempo distribution (beats-per-minute or BPM) per track.
+These estimations were computed using the track-level median beat length for each of the annotated beats in a given track.
+We can see a clear peak at 120 BPM, and we hypothesize that this might be due to it being the default tempo value in most modern software digital audio workstations.\footnote{Pro-Tools, Logic Pro X, and CuBase have 120 BPM as their default tempo value.}
+Furthermore, in Figure~\ref{fig:BPM_std} we plot the standard deviation of the estimated tempo.
+We can clearly see that the tempo is remarkably steady in this dataset, which is expected given the type of musical genres it spans.
 
-\subsubsection{beats}
-
-BPM: Median beat length for each track.
 
 \begin{figure}
     \centerline{\includegraphics[width=\columnwidth]{figs/BPM_distribution.pdf}}
-    \caption{BPM distribution of the \setName~set}
+    \caption{Tempo distribution of the tracks in the \setName~set.}
     \label{fig:BPM_dist}
 \end{figure}
 
-\subsubsection{downbeats}
+\begin{figure}
+    \centerline{\includegraphics[width=\columnwidth]{figs/BPM_std.pdf}}
+    \caption{Tempo standard deviation of the \setName~set.}
+    \label{fig:BPM_std}
+\end{figure}
+
+In terms of segment statistics, we show several heuristics based on those described in a MIREX meta-analysis of the segmentation task~\cite{Smith2013}.
+
+\begin{figure}
+    \centerline{\includegraphics[width=\columnwidth]{figs/segment_label_count.pdf}}
+    \caption{Number of segments per track, based on their labels.}
+    \label{fig:segment_count}
+\end{figure}
 
 \begin{figure}
     \centerline{\includegraphics[width=\columnwidth]{figs/SegmentLabels_distribution.pdf}}
@@ -232,8 +246,8 @@ Segmentation results. Using~\cite{Nieto2016}. Serr\`a algorithm~\cite{Serra2014}
 
 
 \begin{figure}
-    \centerline{\includegraphics[width=\columnwidth]{figs/segment_results.pdf}}
-    \caption{Segmentation results with estimated beats}
+    \centerline{\includegraphics[width=1.1\columnwidth]{figs/segment_results.pdf}}
+    \caption{Segmentation results}
     \label{fig:segment_results}
 \end{figure}
 
