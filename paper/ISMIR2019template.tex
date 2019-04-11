@@ -129,7 +129,7 @@ To address the open problems of ambiguity and subjectivity, further annotations 
 That is the case with The Structural Annotations for Large Amounts of Music Information (SALAMI) dataset~\cite{Smith2011}, where most of its nearly 1,400 tracks have been annotated by at least 2 humans.
 Similarly, the Structural Poly Annotations of Music (SPAM) dataset~\cite{Nieto2016} provides 5 different annotations for 50 tracks.
 These two sets not only contain functional levels of annotations, but also large and small scale segments where only single letters describing the similarity between segments are annotated.
-Thus, these can be seen as sets that contain \emph{hierarchical} data, which remains largely unexploited in the MIREX competition.
+Thus, these can be seen as sets that contain \emph{hierarchical} data, which remains largely unexploited in the MIREX competition~\cite{Ehmann2011, Smith2013}.
 As opposed to Isophonics and RWC, these two sets contain highly diverse music in terms of genre: from world-music to rock, including jazz, blues, and live music.
 
 The following properties typically define segmentation datasets:
@@ -196,23 +196,33 @@ We can clearly see that the tempo is remarkably steady in this dataset, which is
 
 \begin{figure}
     \centerline{\includegraphics[width=\columnwidth]{figs/BPM_std.pdf}}
-    \caption{Tempo standard deviation of the \setName~set.}
+    \caption{Standard deviation of the tempo distribution in the \setName~set.}
     \label{fig:BPM_std}
 \end{figure}
 
-In terms of segment statistics, we show several heuristics based on those described in a MIREX meta-analysis of the segmentation task~\cite{Smith2013}.
+In terms of segment statistics, we show data based on certain attributes described in a MIREX meta-analysis of the segmentation task~\cite{Smith2013}.
+In Figure~\ref{fig:segment_count} we plot track-level histograms for the number of segments, and the number of unique segments (i.e., those with the same associated label).
+Both distributions seem to be unimodal and centered around 10 and 11 for the number of segments per tracks, and around 6 and 7 for the number of unique labels per track.
+This differs from the number of unique segments in The Beatles dataset, which is centered around 4 per track~\cite{Nieto2014}.
 
 \begin{figure}
     \centerline{\includegraphics[width=\columnwidth]{figs/segment_label_count.pdf}}
-    \caption{Number of segments per track, based on their labels.}
+    \caption{Number of segments per track, based on their segment labels.}
     \label{fig:segment_count}
 \end{figure}
 
+Figure~\ref{fig:seglabel_dist} shows the frequency in which the most common segment labels appear in the set.
+The labels ``chorus'' and ``verse'' dominate the distribution, as these functional parts are common in western popular music.
+The plot also shows potentially repeated labels like ``inst'' and ``instrumental.''
+A further inter-song analysis of the labels might be necessary to potentially merge certain labels and thus unify the vocabulary of the set.
+
 \begin{figure}
     \centerline{\includegraphics[width=\columnwidth]{figs/SegmentLabels_distribution.pdf}}
-    \caption{BPM distribution of the \setName~set}
+    \caption{Most common segment labels.}
     \label{fig:seglabel_dist}
 \end{figure}
+
+We plot in Figure~\ref{fig:seglen_dist} the distribution of the segment lengths across the entire dataset.
 
 \begin{figure}
     \centerline{\includegraphics[width=\columnwidth]{figs/SegmentLength_distribution.pdf}}
@@ -225,8 +235,6 @@ In terms of segment statistics, we show several heuristics based on those descri
     \caption{BPM distribution of the \setName~set}
     \label{fig:downbeat_segment}
 \end{figure}
-
-\subsubsection{segmentation}
 
 How many segments start/end on downbeats?
 
