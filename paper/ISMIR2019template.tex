@@ -183,7 +183,7 @@ These splits are defined by retaining the genre distribution both in the trainin
 In this subsection we provide several data insights obtained from the annotations to give an objective overview of the set.
 In Figure~\ref{fig:BPM_dist} we show the estimated tempo distribution (beats-per-minute or BPM) per track.
 These estimations were computed using the track-level median beat length for each of the annotated beats in a given track.
-We can see a clear peak at 120 BPM, and we hypothesize that this might be due to it being the default tempo value in most modern software digital audio workstations.\footnote{Pro-Tools, Logic Pro X, and CuBase have 120 BPM as their default tempo value.}
+There is a clear peak at 128 BPM, which could be explained by being the most common tempo in electronic dance music~\cite{Moelants2008}.
 Furthermore, in Figure~\ref{fig:BPM_std} we plot the standard deviation of the estimated tempo.
 We can clearly see that the tempo is remarkably steady in this dataset, which is expected given the type of musical genres it spans.
 
@@ -223,21 +223,25 @@ A further inter-song analysis of the labels might be necessary to potentially me
 \end{figure}
 
 We plot in Figure~\ref{fig:seglen_dist} the distribution of the segment lengths, in seconds, across the entire dataset.
-It might be interesting to discuss the peak at 15 seconds
+It might be interesting to discuss the peak at 15 seconds.
+As we showed in Figure~\ref{fig:BPM_dist}, there is a majority of tracks at 128 BPM, which makes 15 seconds a segment of exactly 32 beats.
+This, in the common 4/4 time signature, would result in 8 bars per each 15-second segment in that tempo, and 8 bars are rather usual in electronic dance music~\cite{Moelants2008}.
 
 \begin{figure}
     \centerline{\includegraphics[width=\columnwidth]{figs/SegmentLength_distribution.pdf}}
-    \caption{BPM distribution of the \setName~set}
+    \caption{Segment length distribution.}
     \label{fig:seglen_dist}
 \end{figure}
 
+Finally, and thanks to having access to the annotated downbeats, we show in Figure~\ref{fig:downbeat_segment} the number of segments starting at a specific beat within a given bar.
+We can see that the vast majority of segments (81.1\%) start in a downbeat.
+Interestingly, several segments (10\%) start in position 4, thus showing that 1-beat count-ins are more common than other types of count-ins on this dataset.
+
 \begin{figure}
     \centerline{\includegraphics[width=\columnwidth]{figs/Downbeat_Segment_Alignment.pdf}}
-    \caption{BPM distribution of the \setName~set}
+    \caption{Number of segments based on their starting beat position within a bar.}
     \label{fig:downbeat_segment}
 \end{figure}
-
-How many segments start/end on downbeats?
 
 \section{Results}\label{sec:results}
 
