@@ -280,15 +280,14 @@ Unlike the ``BeatTracker'' algorithm in \cite{Bock2011}, the ``BeatDetector'' al
 \subsection{Downbeat Results}
 
 Unfortunately the availability of open source downbeat estimation libraries is limited. In order to provide a baseline for downbeat detection performance
-with the \setName~set specifically, results have been evaluated with the downbeat detection algorithms available in \cite{Bock2016b}. Two algorithms were
-evaluated including the method proposed in \cite{Bock2016a}, and the dynamic Bayesian bar tracking processor using the input from the RNN bar processor activation
-function - all of which is available within the Madmom package \cite{Bock2016b}. The results can be seen in Figure~\ref{fig:downbeat_results}. For the method in \cite{Bock2016a}, the annotated beats are provided from which
-to estimate the downbeats. The significant improvement in performance obtained by this algorithm over that with the estimated beat positions highlights the importance
+with the \setName~set specifically, results have been evaluated with the downbeat detection algorithms available in \cite{Bock2016b} in addition to Durand's algorithm \cite{Durand2016}, making three algorithms in total.
+The algorithms from the Madmom python package \cite{Bock2016b} include the method proposed in \cite{Bock2016a} using the annotated beat positions as input, and the dynamic Bayesian bar tracking processor using the input from the RNN bar processor activation
+function. The results can be seen in Figure~\ref{fig:downbeat_results}. The superior performance of \cite{Bock2016a}, which has oracle annotated beat information, highlights the importance
 of reliable beat tracking for downbeat estimation performance, and the interdependence between the beat tracking and downbeat estimation tasks.
 
 \begin{figure}
     \centerline{\includegraphics[width=\columnwidth]{figs/2019_04_09_10_27_35_Downbeat_Re_F-Measure.pdf}}
-    \caption{Downbeat tracking performance over the \setName~set, for the algorithms B{\"o}ck 1 \cite{Bock2016a} and B{\"o}ck 2 - a dynamic Bayesian network provided within the Madmom package \cite{Bock2016b}.}
+    \caption{Downbeat tracking performance over the \setName~set, for the algorithms B{\"o}ck 1 \cite{Bock2016a} and B{\"o}ck 2 - a dynamic Bayesian network provided within the Madmom package \cite{Bock2016b}, and Durand \cite{Durand2016}.}
     \label{fig:downbeat_results}
 \end{figure}
 
