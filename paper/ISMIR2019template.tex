@@ -296,6 +296,7 @@ of reliable beat tracking for downbeat estimation performance, and the interdepe
 
 There are several open source structural segmentation algorithms available in the Music Structure Analysis Framework (MSAF)~\cite{Nieto2016}.
 We run the most performing ones on the \setName~set: (i) Structural Features~\cite{Serra2014} to identify boundaries, and (ii) 2D-Fourier Magnitude Coefficients (2D-FMC)~\cite{Nieto2014} to label the segments based on their acoustic similarity.
+Constant-Q Transforms~\cite{Schorkhuber2010} are the selected audio features given their ability to capture both timbral and harmonic content, and the default parameters in MSAF are the ones employed when computing these results.
 We use \texttt{mir\_eval}~\cite{Raffel2014} to evaluate these algorithms, and report the F-measures for the most common metrics: Hit Rate at 0.5 and 3 seconds for boundary retrieval, and the Pairwise Frame Clustering and Entropy Scores for the labeling process.
 These algorithms can use beat-synchronized features, and we ran each algorithm twice: once with estimated beats using Librosa, and the other by using the actual annotated beats.
 Song-level results for these two different runs are available as CSV files in the dataset repository disclosed above.
