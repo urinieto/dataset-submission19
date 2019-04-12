@@ -91,20 +91,20 @@
 The tasks of beat detection, downbeat prediction, and structural segmentation~\cite{Paulus2010} constitute a fundamental part of the field of MIR.
 These three musical characteristics are often related: downbeats define the first beat of a given music measure, and long structural music segments tend to begin and end on specific beat locations --frequently on downbeats.
 The automatic estimation of such information could result in better musical systems such as more accurate automatic DJ-ing, better intra- and inter-song navigation, further musicological insights of large collections, \emph{etc}.
-While several approaches exploiting more than one of these musical traits have been proposed~\cite{Bock2016, Mccallum2019, Fuentes2019}, the lack of human annotated data containing the three of them for a single collection are scarce.
+While several approaches exploiting more than one of these musical traits have been proposed~\cite{Bock2016, Mccallum2019, Fuentes2019}, the amount of human annotated data containing the three of them for a single collection is scarce.
 This limits the amount of potential of certain methods, especially those that require large amounts of information (e.g., deep learning~\cite{Humphrey2012}).
 
 In this paper we present the \setName~set: human annotations of beats, downbeats, and functional segmentation for over 700 tracks of western popular music.
 These annotations were gathered with the aim of having a significant amount of data to train models to improve the prediction of such musical attributes, which would later be applied to various products offered by the company \setName.
 By releasing this set to the public, it is our aim to let the research community explore and exploit these annotations to advance the tasks of beat tracking, downbeat prediction, and automatic functional structural segmentation.
-We discuss the methodology to acquire these data, including the song selection process, and the inclusion of standard identifiers (Acoustid and MusicBrainz) and onsets for the first 30 seconds of the tracks to allow for other researchers to more easily access and align, when needed, the actual audio content.
+We discuss the methodology to acquire these data, including the song selection process, and the inclusion of standard identifiers (AcoustID and MusicBrainz) and onsets for the first 30 seconds of the tracks to allow for other researchers to more easily access and align, when needed, the actual audio content.
 Furthermore, we present a series of results with standard algorithmic approaches in the literature with the goal of having an initial public benchmark of this set.
 
 The rest of this work is organized as follows: Section~\ref{sec:background} contains a review of the most relevant public datasets of the tasks at hand; Section~\ref{sec:dataset} discusses the actual \setName~set, including the data gathering, their formatting, and various statistics; Section~\ref{sec:results} presents various benchmarks in the set; and Section~\ref{sec:conclusions} draws some final conclusions and discloses future remarks.
 %
 \section{Background}\label{sec:background}
 
-In this section we discuss previously published datasets and the tasks they aim to solve.
+Several datasets with beat, downbeat, and/or segment annotations have been previously published, and in this section we review the most relevant ones.
 
 \input{beat_downbeat.tex}
 
@@ -313,9 +313,9 @@ As mentioned in Section~\ref{sub:structsegm}, structural segmentation is a chall
 \section{Conclusions}\label{sec:conclusions}
 
 We presented the \setName~set, the largest dataset in terms of human annotations containing the following three types of music information: beats, downbeats, and function structural segments.
-This set contains mostly western popular music, with strong emphasis on Pop, EDM, and Rock.
+This set contains mostly western popular music, with strong emphasis on Pop, EDM, and Hip-Hop.
 We provide metadata in terms of genre, song title, and artist information along with MusicBrainz and AcoustID identifiers plus predicted onset information to allow easier matching and alignment with audio data.
-We discussed a set of results using current algorithms in the literature in terms of beat tracking, downbeat prediction, and structural segmentation to give an initial benchmark of the set.
+We discussed a set of results using current algorithms in the literature in terms of beat tracking, downbeat prediction, and structural segmentation to disclose an initial public benchmark of the set.
 Given the rather large nature of the set and the three different types of music information contained in it, it is our hope that researchers employ these data not only to further advance one of these three MIR tasks individually, but also to potentially combine them to yield superior approaches in the near future.
 
 % For bibtex users:
