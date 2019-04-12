@@ -155,7 +155,7 @@ The mix of genres in this corpus were chosen to be typical of ones used in the r
 
 All songs were annotated by trained professional musicians who regularly work in music production environments. As the project went on, the majority of annotation work fell to only a few individuals who became specialized in this task. Annotations were created in Digital Audio Workstation software (such as Reaper or Logic). First, a MIDI tempo track was established that corresponded to the song audio. Then beats, downbeats, and sections were coded into the MIDI track using note events and text events. MIDI files were then exported and automatically converted to a text-based representation of beats, downbeats, and named section boundaries. Every song was verified once by the original annotator.
 
-Additional data could be obtained by data augmentation~\cite{Mcfee2015}.
+%Additional data could be obtained by data augmentation~\cite{Mcfee2015}.
 
 \subsection{Dataset Contents}
 
@@ -164,7 +164,7 @@ The annotations and some of the song-level metadata are distributed via JAMS~\ci
 This format is chosen given its simplicity when storing multi-task annotations plus song- and corpus-level metadata.
 Each JAMS file contains the beat, downbeat, and functional segmentation annotations, plus a set of estimated onsets for the first 30 seconds of the audio.
 These onsets should help aligning the audio in case researchers obtain audio data with different compression formats that might include certain small time offsets in the time signal.
-This onset information was computed using \texttt{librosa}~\cite{Mcfee2015a} version TODO, with their default parameters.
+This onset information was computed using Librosa~\cite{Mcfee2015a}, with their default parameters.
 
 For the sake of transparency and usability, we also publish the raw beats, downbeats, and segmentation data as space-separated text files, two per track: one for beats and downbeats, and the other for segments.
 We also distribute the code that converts these raw annotations into unified JAMS file.
@@ -286,18 +286,17 @@ of reliable beat tracking for downbeat estimation performance, and the interdepe
 \subsection{Segmentation Results}
 
 There are several open source structural segmentation algorithms available in the Music Structure Analysis Framework (MSAF)~\cite{Nieto2016}.
-We run the most performing ones on the \setName~set.
-These are the Structural Features~\cite{Serra2014} to identify boundaries, and the 2D-Fourier Magnitude Coefficients (2D-FMC)~\cite{Nieto2014} to label the segments based on their acoustic similarity.
-We use \texttt{mir\_eval}~\cite{Raffel2014} to evaluate these algorithms, and report the F-measures of the most common metrics of Hit Rate at 0.5 and 3 seconds for boundary retrieval, and the Pairwise Frame Clustering and Entropy Scores for the labeling process.
-These algorithms can use beat-synchronized features, and we ran each algorithm twice: once with estimated features using Librosa, and the other by using the actual annotated beats.
+We run the most performing ones on the \setName~set: (i) Structural Features~\cite{Serra2014} to identify boundaries, and (ii) 2D-Fourier Magnitude Coefficients (2D-FMC)~\cite{Nieto2014} to label the segments based on their acoustic similarity.
+We use \texttt{mir\_eval}~\cite{Raffel2014} to evaluate these algorithms, and report the F-measures for the most common metrics: Hit Rate at 0.5 and 3 seconds for boundary retrieval, and the Pairwise Frame Clustering and Entropy Scores for the labeling process.
+These algorithms can use beat-synchronized features, and we ran each algorithm twice: once with estimated beats using Librosa, and the other by using the actual annotated beats.
 Song-level results for these two different runs are available as CSV files in the dataset repository disclosed above.
 
 In Figure~\ref{fig:segment_results} all segmentation results are shown.
 The results in turquoise boxplots display the metrics of the algorithms when running on estimated beat-synchronized features, while the purple boxplots show those using annotated beats instead.
-Given how related boundary retrieval is with respect to beat placement, it is not unexpected to see a significant improvement in the boundary metrics (Hit Rates) when using annotated beats compared to those using estimated ones.
-This illustrates the relevant room for improvement in terms of beat tracking (at least that contained in the Librosa package).
+Given how related boundary retrieval is with respect to precise beat placement, it is not unexpected to see a significant improvement in the boundary metrics (Hit Rates) when using annotated beats compared to those using estimated ones.
+This illustrates the relevant room for improvement in terms of beat tracking performance (at least that contained in the Librosa package).
 On the other hand, it is worth noting that the label results do not seem to depend as much on the quality of the beats in order to produce their outcomes, as the two different runs yield similar results.
-As mentioned in Section~\ref{sub:structsegm}, structural segmentation is a challenging task especially due to ambiguity, subjectivity, and hierarchy, and this is reflected in the overall results, which have significant room for improvement.
+As mentioned in Section~\ref{sub:structsegm}, structural segmentation is a challenging task especially due to ambiguity, subjectivity, and hierarchy, and this is reflected in the overall results, which exhibit notable room for improvement.
 
 \begin{figure}
     \centerline{\includegraphics[width=1.1\columnwidth]{figs/segment_results.pdf}}
@@ -308,8 +307,10 @@ As mentioned in Section~\ref{sub:structsegm}, structural segmentation is a chall
 \section{Conclusions}\label{sec:conclusions}
 
 We presented the \setName~set, the largest dataset in terms of human annotations containing the following three types of music information: beats, downbeats, and function structural segments.
-
-TODO: Potential of combined data + large amounts of annotations.
+This set contains mostly western popular music, with strong emphasis on Pop, EDM, and Rock.
+We provide metadata in terms of genre, song title, and artist information along with MusicBrainz and AcoustID identifiers plus predicted onset information to allow easier matching and alignment with audio data.
+We discussed a set of results using current algorithms in the literature in terms of beat tracking, downbeat prediction, and structural segmentation to give an initial benchmark of the set.
+Given the rather large nature of the set and the three different types of music information contained in it, it is our hope that researchers employ these data not only to further advance one of these three MIR tasks individually, but also to potentially combine them to yield superior approaches in the near future.
 
 % For bibtex users:
 \bibliography{ISMIRtemplate,beat_data_refs}
