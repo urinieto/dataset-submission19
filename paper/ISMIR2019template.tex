@@ -264,8 +264,11 @@ as a convenience for any future work that wishes to evaluate novel algorithms ag
 The beat tracking results for the aforementioned algorithms are displayed in Figure~\ref{fig:beat_results}. There they are evaluated across two metrics,
 F-Measure, and Max~F-Measure, where the latter refers to the maximum F-Measure obtained per track when evaluated across double and half-time metrical variations
 in the annotated beats provided with this dataset. For half-time metrical variations, both the downbeat and offbeat alignments were tested for a maximum F-Measure
-value. While \cite{Ellis2007} is the most computationally efficient of the algorithms, we see clear gains in the later methods developed. It can be seen that with 
-this dataset, both \cite{Ellis2007} and the ``BeatDetector'' algorithm from \cite{Bock2011} when using  and REF have a significant number of double-half time errors, compared to REFS.
+value. While \cite{Ellis2007} is the most computationally efficient of the algorithms, we see clear gains in the later methods developed. When investigating the types
+of errors present in the beat position estimates from \cite{Ellis2007}, it was found the most common error was the alignment of beat phase. Often beat positions landed
+on the half beat or quarter beat, resulting in an F-Measure of 0 when this misalignment is consistent throughout the track.
+When comparing F-Measure and Max F-Measure metrics, it can be seen that with 
+this dataset both \cite{Ellis2007} and the ``BeatDetector'' algorithm from \cite{Bock2011} have a significant number of double-half time errors, compared to the other algorithms evaluated.
 Unlike the ``BeatTracker'' algorithm in \cite{Bock2011}, the ``BeatDetector'' algorithm assumes constant tempo.
 
 \begin{figure}
