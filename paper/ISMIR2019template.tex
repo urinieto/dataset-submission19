@@ -88,8 +88,8 @@
 %
 \section{Introduction}\label{sec:introduction}
 
-The tasks of beat detection \cite{Ellis2007}, downbeat prediction \cite{Bock2016}, and structural segmentation~\cite{Paulus2010} constitute a fundamental part of the field of MIR.
-These three musical characteristics are often related: downbeats define the first beat of a given music measure, and long structural music segments tend to begin and end on specific beat locations --frequently on downbeats. \MD{can you include a ref for this?}
+The tasks of beat detection~\cite{Ellis2007}, downbeat prediction~\cite{Bock2016}, and structural segmentation~\cite{Paulus2010} constitute a fundamental part of the field of MIR.
+These three musical characteristics are often related: downbeats define the first beat of a given music measure, and long structural music segments tend to begin and end on specific beat locations --frequently on downbeats~\cite{Foote1999}.
 The automatic estimation of such information could result in better musical systems such as more accurate automatic DJ-ing, better intra- and inter-song navigation, further musicological insights of large collections, \emph{etc}.
 While a few approaches exploiting more than one of these musical traits have been proposed~\cite{Bock2016, Mccallum2019, Fuentes2019}, the amount of human annotated data containing the three of them for a single collection is scarce.
 This limits the amount of potential of certain methods, especially those that require large amounts of information (e.g., deep learning~\cite{Humphrey2012}).
@@ -100,7 +100,7 @@ By releasing this set to the public, our aim is to let the research community ex
 We discuss the methodology to acquire these data, including the song selection process, and the inclusion of standard identifiers (AcoustID and MusicBrainz) and a set of automatically extracted onsets times for the first 30 seconds of the tracks to allow other researchers to more easily access and align, when needed, the actual audio content.
 Furthermore, we present a series of results with standard algorithmic approaches in the literature with the goal of having an initial public benchmark of this set.
 
-The rest of this work is organized as follows: Section~\ref{sec:background} contains a review of the most relevant public datasets of the tasks at hand; Section~\ref{sec:dataset} discusses the \setName~set, including the data gathering, their formatting, and various statistics; Section~\ref{sec:results} presents various benchmarks in the set; and Section~\ref{sec:conclusions} draws some final conclusions and discusses future work.
+The rest of this work is organized as follows: Section~\ref{sec:background} contains a review of the most relevant public datasets of the tasks at hand; Section~\ref{sec:dataset} discusses the \setName~set, including the data gathering, their formatting, and various statistics; Section~\ref{sec:results} presents numerous benchmarks in the set; and Section~\ref{sec:conclusions} draws some final conclusions and discusses future work.
 %
 \section{Background}\label{sec:background}
 
@@ -117,19 +117,19 @@ All well-known published datasets contain both boundary and label information.
 One of the major challenges with structural segmentation is that this task is regarded as both ambiguous (i.e., there may be more than one valid annotation for a given track~\cite{McFee2017}) and subjective (i.e., two different listeners might perceive different sets of segment boundaries~\cite{Bruderer2009}).
 This has led to different methodologies when annotating and gathering structural datasets, thus having a diverse ecosystem of sets to choose from when evaluating automatic approaches.
 
-The first time this task appeared on MIREX was in 2009,\footnote{https://www.music-ir.org/mirex/wiki/2009:Structural\_Segmentation} where annotations from The Beatles dataset (included in the set described above \MD{this isn't very clear, maybe just reference the system again?}) and a subset of the Real World Computing Popular Music Database (RWC)~\cite{Goto2002} were employed.
+The first time this task appeared on MIREX was in 2009,\footnote{https://www.music-ir.org/mirex/wiki/2009:Structural\_Segmentation} where annotations from The Beatles dataset (which also includes beat and downbeat annotations, as previously described) and a subset of the Real World Computing Popular Music Database (RWC)~\cite{Goto2002} were employed.
 These sets contain several functional segment annotations for western (The Beatles) and Japanese (RWC) popular music.
-These segment functions describe the \emph{purpose} of the segments, e.g.: ``solo'', ``verse'', ``chorus.''
+These segment functions describe the \emph{purpose} of the segments, e.g.: ``solo,'' ``verse,'' ``chorus.''
 A single annotation per track is provided for these two sets.
-The Beatles dataset was further revised at the Tampere University of Technology,\footnote{http://www.cs.tut.fi/sgn/arg/paulus/beatles\_sections\_TUT.zip} and additional functional segment annotations for other other bands were added to The Beatles set, which became known as the Isophonics Dataset~\cite{Mauch2009a}.
+The Beatles dataset was further revised at the Tampere University of Technology,\footnote{http://www.cs.tut.fi/sgn/arg/paulus/beatles\_sections\_TUT.zip} and additional functional segment annotations for other bands were added to The Beatles set, which became known as the Isophonics Dataset~\cite{Mauch2009a}.
 No beat or downbeat annotations were provided to the rest of the tracks in Isophonics, and the final number of tracks with functional structural segment annotations is 300.
-The number of annotated tracks in the RWC is 365.
+The number of annotated tracks in RWC is 365.
 
 To address the open problems of ambiguity and subjectivity, further annotations per track from several experts could be gathered.
-That is the case with The Structural Annotations for Large Amounts of Music Information (SALAMI) dataset~\cite{Smith2011}, where most of its nearly 1,400 tracks have been annotated by at least 2 musical experts.
+That is the case with the Structural Annotations for Large Amounts of Music Information (SALAMI) dataset~\cite{Smith2011}, where most of its nearly 1,400 tracks have been annotated by at least 2 musical experts.
 Similarly, the Structural Poly Annotations of Music (SPAM) dataset~\cite{Nieto2016} provides 5 different annotations for 50 tracks.
 These two sets not only contain functional levels of annotations, but also large and small scale segments where only single letters describing the similarity between segments are annotated.
-Thus, these can be seen as sets that contain \emph{hierarchical} data, which remains largely unexploited in the MIREX competition~\cite{Ehmann2011, Smith2013}.
+Thus, these can be seen as sets that contain \emph{hierarchical} data, which pose significant challenges~\cite{McFee2017} and remain largely unexploited in the MIREX competition~\cite{Ehmann2011, Smith2013}.
 As opposed to Isophonics and RWC, these two sets contain highly diverse music in terms of genre: from world-music to rock, including jazz, blues, and live music.
 
 The following properties typically define segmentation datasets:
@@ -145,14 +145,14 @@ The set is publicly available on-line.\footnote{URL not displayed for the blind 
 
 \subsection{Data Gathering}
 
-The primary motivation of this work is based on the need to create gameplay data for rhythm-action games (also known as beat matching games). Many such games exist, from early pioneers like Parappa The Rapper and Beatmania, to the rock simulation games Guitar Hero and Rock Band, as well as community-based games like OSU and more recently, VR games like Beat Saber. In most cases the gameplay data (also referred to as beatmaps), consisting of note locations in a song, is hand-authored. In certain games, additional control data may be desirable. For example, in the rock simulation games, where a 3D depiction of a rock concert is rendered, it can be desirable to simulate flashing lights (on the beat) or lighting color palette changes (on section boundaries). Again, this data tends to be hand-authored.
+The primary motivation of this work is based on the need to create gameplay data for rhythm-action games (also known as beat matching games). Many such games exist, from early pioneers like Parappa The Rapper and Beatmania, to the rock simulation games Guitar Hero and Rock Band, as well as community-based games like OSU and more recently, VR games like Beat Saber. In most cases the gameplay data (also referred to as beatmaps), consisting of note locations in a song, are hand-authored. In certain games, additional control data may be desirable. For example, in the rock simulation games, where a 3D depiction of a rock concert is rendered, it can be desirable to simulate flashing lights (on the beat) or lighting color palette changes (on section boundaries). Again, these data tend to be hand-authored.
 
-Our desire was to implement a suite of automatic music analysis tools that estimate certain musical attributes in order to expedite the process of hand-authoring gameplay data, or in some cases, to fully automate the process of creating this data. The songs of the \setName~set were gathered and hand-annotated to create a ground-truth dataset for training and testing these algorithms.
+Our desire was to implement a suite of automatic music analysis tools that estimate certain musical attributes in order to expedite the process of hand-authoring gameplay data, or in some cases, to fully automate the process of creating these data. The songs of the \setName~set were gathered and hand-annotated to create a ground-truth dataset for training and testing these algorithms.
 
 The mix of genres in this corpus were chosen to be typical of ones used in the rhythm-action genre, with a somewhat higher tendency towards EDM and popular songs suitable for dancing (see Figure~\ref{fig:genres_dist} for the full genre distribution).
 As such, most tend to have a very stable tempo and a 4/4 time signature. 
 However, we also added a selection of songs that may not be typical of dance or pop music to increase variety.
-Some of these (Classic Rock, Country, Metal) may have less stable tempo (where drums are played by \MD{real?} musicians as opposed to drum-machines or DAW-based productions) and may deviate from a strict 4/4 meter. 
+Some of these (Classic Rock, Country, Metal) may have less stable tempo (where drums are played by actual musicians as opposed to drum-machines or DAW-based productions) and may deviate from a strict 4/4 meter. 
 
 \begin{figure}
     \centerline{\includegraphics[width=\columnwidth]{figs/PublishedGenres_distribution.pdf}}
@@ -174,7 +174,7 @@ These onsets should help aligning the audio in case researchers obtain audio dat
 This onset information was computed using Librosa~\cite{Mcfee2015a}, with their default parameters.
 
 For the sake of transparency and usability, we also publish the raw beats, downbeats, and segmentation data as space-separated text files, two per track: one for beats and downbeats, and the other for segments.
-We also distribute the code that converts these raw annotations into unified JAMS file.
+We also distribute the code that converts these raw annotations into unified JAMS files.
 
 Furthermore, we provide other identifiers with the aim of easily retrieving additional metadata and/or audio content for each song.
 These identifiers include:
@@ -184,7 +184,7 @@ These identifiers include:
     \item \textbf{AcoustID}\footnote{https://acoustid.org/}: open source fingerprinting service to easily match audio content, typically associated with MusicBrainz identifiers.
 \end{itemize}
 
-Finally, we provide a single csv file including additional metadata information such as genre and proposed train/test splits.
+Finally, we provide a single CSV file including additional metadata information such as genre and proposed train/test splits.
 These splits are defined by retaining the genre distribution both in the training and test sets, with a 80\% and 20\% distributions of the tracks, respectively.
 
 \subsection{Data Statistics}
@@ -255,7 +255,7 @@ Interestingly, several segments (10\%) start in position 4, thus showing that 1-
 
 \subsection{Beat Results}
 
-In order to establish performance baselines over the dataset for the task of beat-tracking. We have evaluated a number of openly available beat
+In order to establish performance baselines over the dataset for the task of beat-tracking, we have evaluated a number of openly available beat
 tracking algorithms on the dataset \cite{Ellis2007, Krebs2015, Korzeniowski2014, Bock2011}. Each of these algorithms can be found in either the
 Madmom \cite{Bock2016b} or Librosa \cite{Mcfee2015a} python libraries. This allows a comparison between datasets for which these algorithms have been previously evaluated,
 with respect to their affect on these algorithm's performance. The results are also provided with the dataset in CSV format. This is intendended
@@ -281,13 +281,13 @@ Unlike the ``BeatTracker'' algorithm in \cite{Bock2011}, the ``BeatDetector'' al
 
 Unfortunately the availability of open source downbeat estimation libraries is limited. In order to provide a baseline for downbeat detection performance
 with the \setName~set specifically, results have been evaluated with the downbeat detection algorithms available in \cite{Bock2016b} in addition to Durand's algorithm \cite{Durand2016}, making three algorithms in total.
-The algorithms from the Madmom python package \cite{Bock2016b} include the method proposed in \cite{Bock2016a} using the annotated beat positions as input, and the dynamic Bayesian bar tracking processor using the input from the RNN bar processor activation
-function. The results can be seen in Figure~\ref{fig:downbeat_results}. The superior performance of \cite{Bock2016a}, which has oracle annotated beat information, highlights the importance
+The algorithms from the Madmom python package \cite{Bock2016b} include the method proposed in~\cite{Bock2016} using the annotated beat positions as input, and the dynamic Bayesian bar tracking processor using the input from the RNN bar processor activation
+function. The results can be seen in Figure~\ref{fig:downbeat_results}. The superior performance of~\cite{Bock2016}, which has oracle annotated beat information, highlights the importance
 of reliable beat tracking for downbeat estimation performance, and the interdependence between the beat tracking and downbeat estimation tasks.
 
 \begin{figure}
     \centerline{\includegraphics[width=\columnwidth]{figs/2019_04_09_10_27_35_Downbeat_Re_F-Measure.pdf}}
-    \caption{Downbeat tracking performance over the \setName~set, for the algorithms B{\"o}ck 1 \cite{Bock2016a} and B{\"o}ck 2 - a dynamic Bayesian network provided within the Madmom package \cite{Bock2016b}, and Durand \cite{Durand2016}.}
+    \caption{Downbeat tracking performance over the \setName~set, for the algorithms B{\"o}ck 1~\cite{Bock2016} and B{\"o}ck 2 - a dynamic Bayesian network provided within the Madmom package \cite{Bock2016b}, and Durand \cite{Durand2016}.}
     \label{fig:downbeat_results}
 \end{figure}
 
@@ -302,9 +302,9 @@ Song-level results for these two different runs are available as CSV files in th
 
 In Figure~\ref{fig:segment_results} all segmentation results are shown.
 The results in turquoise boxplots (on the left side) display the metrics of the algorithms when running on estimated beat-synchronized features, while the purple boxplots (on the right) show those using annotated beats instead.
-Given how related boundary retrieval is with respect to precise beat placement, it is not unexpected to see a significant improvement in the boundary metrics (Hit Rates) when using annotated beats compared to those using estimated ones. \MD{Beware, ``significant'' is a catch word which can cause reviewers to question the lack of an accompanying statistical test.}
+Given how related boundary retrieval is with respect to precise beat placement, it is not unexpected to see an improvement in the boundary metrics (Hit Rates) when using annotated beats compared to those using estimated ones.
 This illustrates the relevant room for improvement in terms of beat tracking performance (at least that contained in the Librosa package).
-On the other hand, it is worth noting that the label results do not seem to depend as much on the quality of the beats in order to produce their outcomes, as the two different runs yield similar results. \MD{I think this is a super interesting result!!}
+On the other hand, it is worth noting that the label results do not seem to depend as much on the quality of the beats in order to produce their outcomes, as the two different runs yield similar results.
 As mentioned in Section~\ref{sub:structsegm}, structural segmentation is a challenging task especially due to ambiguity, subjectivity, and hierarchy, and this is reflected in the overall results, which exhibit notable room for improvement.
 
 \begin{figure}
@@ -320,8 +320,6 @@ This set contains mostly western popular music, with strong emphasis on Pop, EDM
 We provide metadata in terms of genre, song title, and artist information along with MusicBrainz and AcoustID identifiers plus predicted onset information to allow easier matching and alignment with audio data.
 We discussed a set of results using current algorithms in the literature in terms of beat tracking, downbeat prediction, and structural segmentation to disclose an initial public benchmark of the set.
 Given the rather large nature of the set and the three different types of music information contained in it, it is our hope that researchers employ these data not only to further advance one of these three MIR tasks individually, but also to potentially combine them to yield superior approaches in the near future.
-
-\MD{The references should be more uniform in their reporting of full names vs initials and concerning the names of the conferences etc. For the names there is a one line hack in the style file to allow a different bibliographystyle file}
 
 % For bibtex users:
 \bibliography{ISMIRtemplate,beat_data_refs}
