@@ -296,21 +296,22 @@ of reliable beat tracking for downbeat estimation performance, and the interdepe
 There are several open source structural segmentation algorithms available in the Music Structure Analysis Framework (MSAF)~\cite{Nieto2016}.
 We run the best performing ones on the \setName~set: (i) Structural Features~\cite{Serra2014} to identify boundaries, and (ii) 2D-Fourier Magnitude Coefficients (2D-FMC)~\cite{Nieto2014} to label the segments based on their acoustic similarity.
 Constant-Q Transforms~\cite{Schorkhuber2010} are the selected audio features given their ability to capture both timbral and harmonic content, and the default parameters in MSAF are the ones employed when computing these results.
-We use \texttt{mir\_eval}~\cite{Raffel2014} to evaluate these algorithms, and report the F-measures for the most common metrics: Hit Rate at 0.5 and 3 seconds for boundary retrieval, and the Pairwise Frame Clustering and Entropy Scores for the labeling process.
-These algorithms can use beat-synchronized features, and we ran each algorithm twice: once with estimated beats using Librosa, and the other by using the actual annotated beats.
-We employed Librosa's beat tracker since MSAF comes with it by default.
-Song-level results for these two different runs are available as CSV files in the dataset repository disclosed above.
+We use \texttt{mir\_eval}~\cite{Raffel2014} to evaluate these algorithms, and report the F-measures for the most common metrics: Hit Rate with 0.5 and 3 second windows for boundary retrieval, and Pairwise Frame Clustering and Entropy Scores for the labeling process.
+These algorithms can use beat-synchronized features, and we ran each algorithm three times, depending on the following beat information: (i) Librosa's estimations, (ii) Korzeniowski's estimations, and (iii) annotations from the \setName~set.
+Thus, we are able to assess the segmentation results when employing the worst and best performing beat trackers from our previous study, plus those computed using human annotated beats.
+Song-level results for these three different runs are available as CSV files in the dataset repository disclosed above.
 
 In Figure~\ref{fig:segment_results} all segmentation results are shown.
-The results in turquoise boxplots (on the left side) display the metrics of the algorithms when running on estimated beat-synchronized features, while the purple boxplots (on the right) show those using annotated beats instead.
-Given how related boundary retrieval is with respect to precise beat placement, it is not unexpected to see an improvement in the boundary metrics (Hit Rates) when using annotated beats compared to those using estimated ones.
-This illustrates the relevant room for improvement in terms of beat tracking performance (at least that contained in the Librosa package).
-On the other hand, it is worth noting that the label results do not seem to depend as much on the quality of the beats in order to produce their outcomes, as the two different runs yield similar results.
+The results in turquoise boxplots (on the left side) display the metrics of the algorithms when running on Librosa's estimated beat-synchronized features, those in light pink (on the middle) correspond to the results computed with Korzeniowski's beats, while the purple boxplots (on the right) show those using annotated beats instead.
+Given how related boundary retrieval is with respect to precise beat placement, it is not unexpected to see an improvement in the boundary metrics (Hit Rates) when using more accurate beat data.
+The boxplots further show that the smaller the time window used in the Hit Rate metrics the more accurate the beat information should ideally be.
+In other words, Korzeniowki's beats yield very similar results than those from human annotations when using a 3 second window, but there is clearly room for enhancement (in terms of beat tracking) when using 0.5 second windows, where the segmentation results using human annotated beats outperform any of the others that employ estimated ones.
+On the other hand, it is worth noting that the label results do not seem to depend as much on the quality of the beats in order to produce their outcomes, as the three different runs yield similar results for the Pairwise Frame Clustering and Entropy Scores metrics.
 As mentioned in Section~\ref{sub:structsegm}, structural segmentation is a challenging task especially due to ambiguity, subjectivity, and hierarchy, and this is reflected in the overall results, which exhibit notable room for improvement.
 
 \begin{figure}
     \centerline{\includegraphics[width=1.1\columnwidth]{figs/segment_results.pdf}}
-    \caption{Segmentation results over the \setName~set, using Structural Features for boundaries and 2D-FMC for the labeling process.}
+    \caption{Segmentation results over the \setName~set, using Structural Features for boundaries, 2D-FMC for the labeling process, and three types of beat information.}
     \label{fig:segment_results}
 \end{figure}
 
