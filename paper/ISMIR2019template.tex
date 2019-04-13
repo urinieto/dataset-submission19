@@ -263,8 +263,8 @@ as a convenience for any future work that wishes to evaluate novel algorithms ag
 
 The beat tracking results for the aforementioned algorithms are displayed in Figure~\ref{fig:beat_results}. There they are evaluated across two metrics,
 F-Measure, and Max~F-Measure, where the latter refers to the maximum F-Measure obtained per track when evaluated across double and half-time metrical variations
-in the annotated beats provided with this dataset. \MD{It would be good to specify the tolerance window for the F-Measure, e.g. in $\pm X$\,seconds / miliseconds.} For half-time metrical variations, both the downbeat and offbeat \MD{upbeat instead of off-beat?} alignments were tested for a maximum F-Measure
-value. While \cite{Ellis2007} is the most computationally efficient of the algorithms \MD{does computational complexity matter?}, we see clear gains in the later methods developed. When investigating the types
+in the annotated beats provided with this dataset. In all experiments a tolerance window of  $\pm 70$~ms was employed in order to compute the F-Measure. For half-time metrical variations, both the downbeat and upbeat alignments were tested for a maximum F-Measure
+value. While \cite{Ellis2007} is the most computationally efficient of the algorithms, we see clear gains in the later methods developed. When investigating the types
 of errors present in the beat position estimates from \cite{Ellis2007}, it was found the most common error was the alignment of beat phase. Often beat positions landed
 on the half beat or quarter beat, resulting in an F-Measure of 0 when this misalignment is consistent throughout the track.
 When comparing F-Measure and Max F-Measure metrics, it can be seen that with 
@@ -273,7 +273,7 @@ Unlike the ``BeatTracker'' algorithm in \cite{Bock2011}, the ``BeatDetector'' al
 
 \begin{figure}
     \centerline{\includegraphics[width=\columnwidth]{figs/2019_04_09_19_15_00_Beat_TrackiMax_F-Measure.pdf}}
-    \caption{Beat tracking performance over the \setName~set, for the algorithms Ellis \cite{Ellis2007}, Krebs \cite{Krebs2015}, Korzeniowski \cite{Korzeniowski2014}, B{\"o}ck 1 - the ``BeatDetector'' technique from \cite{Bock2011}, and B{\"o}ck 1 \MD{shouldn't this be B\"{o}ck 2?} - the ``BeatTracker'' technique from \cite{Bock2011}.}
+    \caption{Beat tracking performance over the \setName~set, for the algorithms Ellis \cite{Ellis2007}, Krebs \cite{Krebs2015}, Korzeniowski \cite{Korzeniowski2014}, B{\"o}ck 1 - the ``BeatDetector'' technique from \cite{Bock2011}, and B{\"o}ck 2 - the ``BeatTracker'' technique from \cite{Bock2011}.}
     \label{fig:beat_results}
 \end{figure}
 
@@ -282,7 +282,7 @@ Unlike the ``BeatTracker'' algorithm in \cite{Bock2011}, the ``BeatDetector'' al
 Unfortunately the availability of open source downbeat estimation libraries is limited. In order to provide a baseline for downbeat detection performance
 with the \setName~set specifically, results have been evaluated with the downbeat detection algorithms available in \cite{Bock2016b} in addition to Durand's algorithm \cite{Durand2016}, making three algorithms in total.
 The algorithms from the Madmom python package \cite{Bock2016b} include the method proposed in~\cite{Bock2016} using the annotated beat positions as input, and the dynamic Bayesian bar tracking processor using the input from the RNN bar processor activation
-function. The results can be seen in Figure~\ref{fig:downbeat_results}. The superior performance of~\cite{Bock2016}, which has oracle annotated beat information, highlights the importance
+function. The results can be seen in Figure~\ref{fig:downbeat_results} in terms of F-Measure with a tolerance window of $\pm 70$~ms. The superior performance of~\cite{Bock2016}, which has oracle annotated beat information, highlights the importance
 of reliable beat tracking for downbeat estimation performance, and the interdependence between the beat tracking and downbeat estimation tasks.
 
 \begin{figure}
