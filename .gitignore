@@ -1,3 +1,8 @@
 *.swp
 .ipynb*
 .DS_Store
+paper/ISMIR2019template.aux
+paper/ISMIR2019template.bbl
+paper/ISMIR2019template.blg
+paper/ISMIR2019template.log
+paper/ISMIR2019template.synctex.gz
