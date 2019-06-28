@@ -71,7 +71,7 @@
     $^5$ MIT, Cambridge, MA, USA\\
     {\tt\small onieto@pandora.com}
 }
-\def\authorname{Oriol Nieto, Matthew McCallum, Matthew Davies, Andrew Robertson, Adam Stark, Eran Egozy}
+\def\authorname{Oriol Nieto, Matthew McCallum, Matthew E.P. Davies, Andrew Robertson, Adam Stark, Eran Egozy}
 
 
 \sloppy % please retain sloppy command for improved formatting
@@ -82,7 +82,7 @@
 \maketitle
 %
 \begin{abstract}
-    We introduce the \setName~set: a collection of annotations of beats, downbeats, and functional segmentation for over 700 full tracks that covers a wide range of western popular music.
+    We introduce the \setName~set: a collection of annotations of beats, downbeats, and functional segmentation for over 900 full tracks that covers a wide range of western popular music.
     Given the variety of annotated music information types in this set, and how strongly these three types of data are typically intertwined, we seek to foster research that focuses on multiple retrieval tasks at once.
     The dataset includes additional metadata such as MusicBrainz identifiers to support the linking of the dataset to third-party information or audio data when available.
     We describe the methodology employed in acquiring this set, including the annotation process and song selection. 
@@ -98,7 +98,7 @@ The automatic estimation of such information could result in better musical syst
 While a few approaches exploiting more than one of these musical traits have been proposed~\cite{Bock2016, Mccallum2019, Fuentes2019}, the amount of human annotated data containing the three of them for a single collection is scarce.
 This limits the training potential of certain methods, especially those that require large amounts of information (e.g., deep learning~\cite{Humphrey2012}).
 
-In this paper we present the \setName~set: human annotations of beats, downbeats, and functional segmentation for over 700 tracks of western popular music.
+In this paper we present the \setName~set: human annotations of beats, downbeats, and functional segmentation for 912 tracks of western popular music.
 These annotations were gathered with the aim of having a significant amount of data to train models to improve the prediction of such musical attributes, which would later be applied to various products offered by Harmonix, a videogame company that specializes in musically-inspired games.
 By releasing this set to the public, our aim is to let the research community explore and exploit these annotations to advance the tasks of beat tracking, downbeat estimation, and automatic functional structural segmentation.
 We discuss the methodology to acquire these data, including the song selection process, and the inclusion of standard identifiers (AcoustID and MusicBrainz) and a set of automatically extracted onset times for the first 30 seconds of the tracks to allow other researchers to more easily access and align, when needed, the actual audio content.
@@ -144,7 +144,7 @@ When only one level of annotations is provided, these are typically called \emph
 
 \section{The \setNameUpper~Set}\label{sec:dataset}
 
-In this section we present the \setName~set, including the methodology of acquiring the data, its motivation, its contents, and a set of statistics of its annotations.
+In this section we present the \setName~set, including the methodology of acquiring the data, its motivation, its contents, and a set of annotation statistics.
 The \setName~set is publicly available on-line.\footnote{https://github.com/urinieto/harmonixset}
 
 \subsection{Data Gathering}
@@ -170,7 +170,7 @@ All songs were annotated by trained professional musicians who regularly work in
 
 \subsection{Dataset Contents}
 
-The \setName~set contains manual annotations for 715 western popular music tracks, thus being the largest published  dataset to date containing beats, downbeats, and function structural segmentation information.
+The \setName~set contains manual annotations for 912 western popular music tracks, thus being the largest published  dataset to date containing beats, downbeats, and function structural segmentation information.
 The annotations and some of the song-level metadata are distributed via JAMS~\cite{Humphrey2014} files, one per track.
 This format is chosen given its simplicity when storing multi-task annotations plus song- and corpus-level metadata.
 Each JAMS file contains the beat, downbeat, and functional segmentation annotations, plus a set of estimated onsets for the first 30 seconds of the audio.
@@ -188,7 +188,7 @@ These identifiers include:
 \end{itemize}
 
 Finally, we provide a single CSV file including additional metadata information such as genre and proposed train/test splits.
-These splits are defined by retaining the genre distribution both in the training and test sets, with a 80\% and 20\% distributions of the tracks, respectively.
+These splits are defined by retaining similar genre distributions both in the training and test sets, with a 80\% and 20\% distributions of the tracks, respectively.
 
 \subsection{Data Statistics}
 
@@ -201,13 +201,13 @@ We can clearly see that the tempo is remarkably steady in this dataset, which is
 
 \begin{figure}
     \centerline{\includegraphics[width=1.05\columnwidth]{figs/BPM_distribution.pdf}}
-    \caption{Tempo distribution of the tracks in the \setName~set.}
+    \caption{Tempo distribution of the tracks in the set.}
     \label{fig:BPM_dist}
 \end{figure}
 
 \begin{figure}
     \centerline{\includegraphics[width=\columnwidth]{figs/BPM_std.pdf}}
-    \caption{Standard deviation of the tempo distribution in the \setName~set.}
+    \caption{Standard deviation of the tempo distribution.}
     \label{fig:BPM_std}
 \end{figure}
 
@@ -260,10 +260,10 @@ Interestingly, several segments (10\%) start in position 4, thus showing that 1-
 
 In order to establish performance baselines over the dataset for the task of beat-tracking, we have evaluated a number of openly available beat
 tracking algorithms on the dataset~\cite{Ellis2007, Krebs2015, Korzeniowski2014, Bock2011}. Each of these algorithms can be found in either the
-madmom~\cite{Bock2016b}\footnote{We used madmom 0.16.1.} or librosa python libraries. By running these algorithms in other datasets with the same metrics, a comparison of datasets could ultimately be performed. The results are also provided with the dataset in CSV format. This is intendended
+madmom~\cite{Bock2016b}\footnote{We used madmom 0.16.1.} or librosa python libraries. By running these algorithms in other datasets with the same metrics, a comparison of datasets could ultimately be performed. The results are also included in the dataset repository in CSV format. This is intendended
 as a convenience for any future work that wishes to evaluate novel algorithms against these benchmarks.
 
-The beat tracking results for the aforementioned algorithms are displayed in Figure~\ref{fig:beat_results}. There they are evaluated across two metrics,
+The beat tracking results for the aforementioned algorithms are displayed in Figure~\ref{fig:beat_results}. They are evaluated across two metrics,
 F-Measure, and Max~F-Measure, where the latter refers to the maximum F-Measure obtained per track when evaluated across double and half-time metrical variations
 in the annotated beats provided with this dataset. In all experiments a tolerance window of  $\pm 70$~ms was employed in order to compute the F-Measure. For half-time metrical variations, both the downbeat and upbeat alignments were tested for a maximum F-Measure
 value. While \cite{Ellis2007} is the most computationally efficient of the algorithms, we see clear gains in the more recently developed methods. When investigating the types
@@ -281,7 +281,7 @@ Unlike the ``BeatTracker'' algorithm in \cite{Bock2011}, the ``BeatDetector'' al
 
 \subsection{Downbeat Results}
 
-Unfortunately the availability of open source downbeat estimation libraries is limited. In order to provide a baseline for downbeat detection performance
+Unfortunately, the availability of open source downbeat estimation libraries is limited. In order to provide a baseline for downbeat detection performance
 with the \setName~set specifically, results have been evaluated with the downbeat detection algorithms available in \cite{Bock2016b} in addition to Durand's algorithm \cite{Durand2016}\footnote{Not open source, shared via private correspondence.}, making three algorithms in total.
 The algorithms from the Madmom python package \cite{Bock2016b} include the method proposed in~\cite{Bock2016} using the annotated beat positions as input, and the dynamic Bayesian bar tracking processor using the input from the RNN bar processor activation
 function. The results can be seen in Figure~\ref{fig:downbeat_results} in terms of F-Measure with a tolerance window of $\pm 70$~ms. The superior performance of~\cite{Bock2016}, which has oracle annotated beat information, highlights the importance
@@ -299,15 +299,15 @@ There are several open source structural segmentation algorithms available in th
 We run the best performing ones on the \setName~set: (i) Structural Features~\cite{Serra2014} to identify boundaries, and (ii) 2D-Fourier Magnitude Coefficients (2D-FMC)~\cite{Nieto2014} to label the segments based on their acoustic similarity.
 Constant-Q Transforms~\cite{Schorkhuber2010} are the selected audio features given their ability to capture both timbral and harmonic content, and the default parameters in MSAF are the ones employed when computing these results.
 We use \texttt{mir\_eval}~\cite{Raffel2014} to evaluate these algorithms, and report the F-measures for the most common metrics: Hit Rate with 0.5 and 3 second windows for boundary retrieval, and Pairwise Frame Clustering and Entropy Scores for the labeling process.
-These algorithms can use beat-synchronized features, and we ran each algorithm three times, depending on the following beat information: (i) Librosa's estimations, (ii) Korzeniowski's estimations, and (iii) annotations from the \setName~set.
+These algorithms can use beat-synchronized features, and we ran each algorithm three times, depending on the following beat information: (i) Ellis' estimations, (ii) Korzeniowski's estimations, and (iii) annotations from the \setName~set.
 Thus, we are able to assess the segmentation results when employing the worst and best performing beat trackers from our previous study, plus those computed using human annotated beats.
 Song-level results for these three different runs are available as CSV files in the dataset repository disclosed above.
 
 In Figure~\ref{fig:segment_results} all segmentation results are shown.
-The results in turquoise boxplots (on the left side) display the metrics of the algorithms when running on Librosa's estimated beat-synchronized features, those in light pink (in the middle) correspond to the results computed with Korzeniowski's beats, while the purple boxplots (on the right) show those using annotated beats instead.
+The results in turquoise boxplots (on the left side) display the metrics of the algorithms when running on Ellis' beat-synchronized features, those in light pink (in the middle) correspond to the results computed with Korzeniowski's beats, while the purple boxplots (on the right) show those using annotated beats instead.
 Given how related boundary retrieval is with respect to precise beat placement, it is not unexpected to see an improvement in the boundary metrics (Hit Rates) when using more accurate beat data.
 The boxplots further show that the smaller the time window used in the Hit Rate metrics the more accurate the beat information should ideally be.
-In other words, Korzeniowki's beats yield very similar results than those from human annotations when using a 3 second window, but there is clearly room for enhancement (in terms of beat tracking) when using 0.5 second windows, where the segmentation results using human annotated beats outperform any of the others that employ estimated ones.
+In other words, Ellis' beats yield slightly worse results than those from human annotations when using a 3 second window, but there is clearly room for enhancement (in terms of this beat tracker) when using 0.5 second windows, where the segmentation results using human annotated beats greatly outperform Ellis' and slightly surpass Korzeniowski's.
 On the other hand, it is worth noting that the label results do not seem to depend as much on the quality of the beats in order to produce their outcomes, as the three different runs yield similar results for the Pairwise Frame Clustering and Entropy Scores metrics.
 As mentioned in Section~\ref{sub:structsegm}, structural segmentation is a challenging task especially due to ambiguity, subjectivity, and hierarchy, and this is reflected in the overall results, which exhibit notable room for improvement.
 
@@ -321,7 +321,7 @@ As mentioned in Section~\ref{sub:structsegm}, structural segmentation is a chall
 
 We presented the \setName~set, the largest dataset in terms of human annotations containing the following three types of music information: beats, downbeats, and function structural segments.
 This set contains mostly western popular music, with strong emphasis on Pop, EDM, and Hip-Hop.
-We provide metadata in terms of genre, song title, and artist information along with MusicBrainz and AcoustID identifiers plus predicted onset information to allow easier matching and alignment with audio data.
+We provide metadata in terms of genre, song title, and artist information along with standard identifiers such as MusicBrainz and AcoustID plus predicted onset information to allow easier matching and alignment with audio data.
 We discussed a set of results using current algorithms in the literature in terms of beat tracking, downbeat estimation, and structural segmentation to disclose an initial public benchmark of the set.
 Given the rather large nature of the set and the three different types of music information contained in it, it is our hope that researchers employ these data not only to further advance one of these three MIR tasks individually, but also to potentially combine them to yield superior approaches in the near future.
 
