@@ -260,8 +260,7 @@ Interestingly, several segments (10\%) start in position 4, thus showing that 1-
 
 In order to establish performance baselines over the dataset for the task of beat-tracking, we have evaluated a number of openly available beat
 tracking algorithms on the dataset~\cite{Ellis2007, Krebs2015, Korzeniowski2014, Bock2011}. Each of these algorithms can be found in either the
-madmom~\cite{Bock2016b}\footnote{We used madmom 0.16.1.} or librosa python libraries. This allows a comparison between datasets for which these algorithms have been previously evaluated,
-with respect to their affect on these algorithm's performance. The results are also provided with the dataset in CSV format. This is intendended
+madmom~\cite{Bock2016b}\footnote{We used madmom 0.16.1.} or librosa python libraries. By running these algorithms in other datasets with the same metrics, a comparison of datasets could ultimately be performed. The results are also provided with the dataset in CSV format. This is intendended
 as a convenience for any future work that wishes to evaluate novel algorithms against these benchmarks.
 
 The beat tracking results for the aforementioned algorithms are displayed in Figure~\ref{fig:beat_results}. There they are evaluated across two metrics,
@@ -275,7 +274,7 @@ this dataset both \cite{Ellis2007} and the ``BeatDetector'' algorithm from \cite
 Unlike the ``BeatTracker'' algorithm in \cite{Bock2011}, the ``BeatDetector'' algorithm assumes constant tempo.
 
 \begin{figure}
-    \centerline{\includegraphics[width=\columnwidth]{figs/2019_04_09_19_15_00_Beat_TrackiMax_F-Measure.pdf}}
+    \centerline{\includegraphics[width=\columnwidth]{figs/2019_06_27_17_45_24_Beat_Tracking_ResF-Measure.pdf}}
     \caption{Beat tracking performance over the \setName~set, for the algorithms Ellis \cite{Ellis2007}, Krebs \cite{Krebs2015}, Korzeniowski \cite{Korzeniowski2014}, B{\"o}ck 1 - the ``BeatDetector'' technique from \cite{Bock2011}, and B{\"o}ck 2 - the ``BeatTracker'' technique from \cite{Bock2011}.}
     \label{fig:beat_results}
 \end{figure}
@@ -289,8 +288,8 @@ function. The results can be seen in Figure~\ref{fig:downbeat_results} in terms 
 of reliable beat tracking for downbeat estimation performance, and the interdependence between the beat tracking and downbeat estimation tasks.
 
 \begin{figure}
-    \centerline{\includegraphics[width=\columnwidth]{figs/2019_04_09_10_27_35_Downbeat_Re_F-Measure.pdf}}
-    \caption{Downbeat tracking performance over the \setName~set, for the algorithms B{\"o}ckD 1~\cite{Bock2016} and B{\"o}ckD 2 - a dynamic Bayesian network provided within the Madmom package \cite{Bock2016b}, and Durand \cite{Durand2016}.}
+    \centerline{\includegraphics[width=\columnwidth]{figs/2019_06_23_20_24_26_Downbeat_ResF-Measure.pdf}}
+    \caption{Downbeat tracking performance over the \setName~set, for the algorithms B{\"o}ck A~\cite{Bock2016} and B{\"o}ck B - a dynamic Bayesian network provided within the Madmom package \cite{Bock2016b}, and Durand \cite{Durand2016}.}
     \label{fig:downbeat_results}
 \end{figure}
 
